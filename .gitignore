@@ -416,3 +416,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+.containers
+
+# WinMerge Artifacts:
+*conflicted copy*
