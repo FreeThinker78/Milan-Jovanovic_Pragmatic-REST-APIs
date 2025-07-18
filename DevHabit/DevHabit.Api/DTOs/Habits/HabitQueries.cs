@@ -1,10 +1,11 @@
-﻿using DevHabit.Api.Entities;
+﻿using System.Linq.Expressions;
+using DevHabit.Api.Entities;
 
 namespace DevHabit.Api.DTOs.Habits;
 
 internal static class HabitQueries
 {
-    public static System.Linq.Expressions.Expression<Func<Habit, HabitDto>> ProjectToDto()
+    public static Expression<Func<Habit, HabitDto>> ProjectToDto()
     {
         return h => new HabitDto
         {

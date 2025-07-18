@@ -9,7 +9,7 @@ public static class DatabaseExtensions
     {
         using IServiceScope scope = app.Services.CreateScope();
         await using ApplicationDbContext dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
+        
         try
         {
             await dbContext.Database.MigrateAsync();
