@@ -1,5 +1,3 @@
-name: devhabit
-
 services:
   devhabit.api:
     image: ${DOCKER_REGISTRY-}devhabitapi

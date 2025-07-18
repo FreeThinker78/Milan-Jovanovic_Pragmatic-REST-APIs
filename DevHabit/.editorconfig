@@ -318,8 +318,14 @@ dotnet_diagnostic.CA1822.severity = none
 # CA1848: Use the LoggerMessage delegates
 dotnet_diagnostic.CA1848.severity = none
 
+# CA1849: Call async methods when in an async method
+dotnet_diagnostic.CA1849.severity = none
+
 # CA1860: Avoid using 'Enumerable.Any()' extension method
 dotnet_diagnostic.CA1860.severity = none
+
+# CA1862: Use the 'StringComparison' method overloads to perform case-insensitive string comparisons
+dotnet_diagnostic.CA1862.severity = none
 
 # CA2007: Consider calling ConfigureAwait on the awaited task
 dotnet_diagnostic.CA2007.severity = none
@@ -363,10 +369,16 @@ dotnet_diagnostic.CS8603.severity = none
 # CS8618: Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 dotnet_diagnostic.CS8618.severity = none
 
+# CS9107: Parameter is captured into the state of the enclosing type and its value is also passed to the base constructor. The value might be captured by the base class as well.
+dotnet_diagnostic.CS9107.severity = none
+
 # IDE Code Analyzers rules
 
 # IDE0005: Remove unnecessary using directives
 dotnet_diagnostic.IDE0005.severity = none
+
+# IDE0008: Use explicit type
+dotnet_diagnostic.IDE0008.severity = none
 
 # IDE0046: Convert to conditional expression
 dotnet_diagnostic.IDE0046.severity = none
@@ -405,6 +417,9 @@ dotnet_diagnostic.S2139.severity = none
 
 # S2325: Methods and properties that don't access instance data should be static
 dotnet_diagnostic.S2325.severity = none
+
+# S2326: Unused type parameters should be removed
+dotnet_diagnostic.S2326.severity = none
 
 # S2365: Properties should not make collection or array copies
 dotnet_diagnostic.S2365.severity = none

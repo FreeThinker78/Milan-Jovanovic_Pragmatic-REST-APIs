@@ -50,11 +50,12 @@ public sealed class HabitsController(
     [HttpPost]
     public async Task<ActionResult<HabitDto>> CreateHabit(CreateHabitDto createHabitDto)
     {
-        Habit? habit = createHabitDto.ToEntity();
+        Habit habit = createHabitDto.ToEntity();
 
         dbContext.Habits.Add(habit);
 
         await dbContext.SaveChangesAsync();
+
         HabitDto habitDto = habit.ToDto();
 
         return CreatedAtAction(nameof(GetHabit), new { id = habitDto.Id }, habitDto);

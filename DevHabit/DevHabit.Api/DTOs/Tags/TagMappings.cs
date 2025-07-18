@@ -6,7 +6,7 @@ internal static class TagMappings
 {
     public static TagDto ToDto(this Tag tag)
     {
-        TagDto dto = new()
+        return new TagDto
         {
             Id = tag.Id,
             Name = tag.Name,
@@ -14,13 +14,11 @@ internal static class TagMappings
             CreatedAtUtc = tag.CreatedAtUtc,
             UpdatedAtUtc = tag.UpdatedAtUtc
         };
-
-        return dto;
     }
 
     public static Tag ToEntity(this TagDto dto)
     {
-        Tag tag = new()
+        return new Tag
         {
             Id = dto.Id,
             Name = dto.Name,
@@ -28,21 +26,17 @@ internal static class TagMappings
             CreatedAtUtc = dto.CreatedAtUtc,
             UpdatedAtUtc = dto.UpdatedAtUtc
         };
-
-        return tag;
     }
 
     public static Tag ToEntity(this CreateTagDto dto)
     {
-        Tag tag = new()
+        return new Tag
         {
             Id = $"t_{Guid.CreateVersion7()}",
             Name = dto.Name,
             Description = dto.Description,
             CreatedAtUtc = DateTime.UtcNow
         };
-        
-        return tag;
     }
 
     public static void UpdateFromDto(this Tag tag, UpdateTagDto dto)

@@ -4,7 +4,7 @@ namespace DevHabit.Api.DTOs.Habits;
 
 public sealed record HabitsCollectionDto
 {
-    public List<HabitDto> Data { get; init; } //or "Items"
+    public List<HabitDto> Data { get; set; } //or "Items"
 }
 
 public sealed record HabitDto

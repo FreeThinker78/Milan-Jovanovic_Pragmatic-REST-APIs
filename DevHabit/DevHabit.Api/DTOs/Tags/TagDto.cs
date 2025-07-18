@@ -2,7 +2,7 @@
 
 public sealed record TagsCollectionDto
 {
-    public List<TagDto> Data { get; init; } //or "Items"
+    public List<TagDto> Data { get; set; } //or "Items"
 }
 
 public sealed record TagDto
