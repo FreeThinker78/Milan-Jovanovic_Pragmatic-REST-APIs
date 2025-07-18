@@ -104,4 +104,22 @@ public sealed class HabitsController(
 
         return NoContent();
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteHabit(string id)
+    {
+        Habit? habit = await dbContext.Habits.FirstOrDefaultAsync(h => h.Id == id);
+
+        if (habit is null)
+        {
+            //return StatusCode(StatusCodes.Status410Gone); To use this you must track deletes to find the id previously deleted.
+            return NotFound();
+        }
+
+        dbContext.Habits.Remove(habit);
+
+        await dbContext.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
