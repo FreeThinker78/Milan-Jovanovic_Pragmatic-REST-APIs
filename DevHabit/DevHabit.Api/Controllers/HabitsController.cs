@@ -1,4 +1,5 @@
-﻿using DevHabit.Api.Database;
+﻿using System.Linq.Expressions;
+using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.Habits;
 using DevHabit.Api.Entities;
 using FluentValidation;
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Dynamic.Core;
+using DevHabit.Api.Services;
 
 namespace DevHabit.Api.Controllers;
 
@@ -18,17 +21,36 @@ public sealed class HabitsController(
 {
 
     [HttpGet]
-    public async Task<ActionResult<HabitsCollectionDto>> GetHabits([FromQuery] HabitsQueryParameters query)
+    public async Task<ActionResult<HabitsCollectionDto>> GetHabits(
+        [FromQuery] HabitsQueryParameters query,
+        SortMappingProvider sortMappingProvider)
     {
+        if (!sortMappingProvider.ValidateMappings<HabitDto, Habit>(query.Sort))
+        {
+            return Problem(
+                statusCode: StatusCodes.Status400BadRequest,
+                detail: $"The provided sort parameter isn't valid: '{query.Sort}'.");
+        }
+
         query.Search ??= query.Search?.Trim().ToLower();
 
+        SortMapping[] sortMappings = sortMappingProvider.GetMappings<HabitDto, Habit>();
         //IQueryable<Habit> query = dbContext.Habits;
 
         //if (!string.IsNullOrWhiteSpace(search))
-        //{
+        //{s
         //    query = query.Where(h => h.Name.ToLower().Contains(search) ||
         //                             h.Description != null && h.Description.ToLower().Contains(search));
         //}
+
+        //Expression<Func<Habit, object>> orderBy = query.Sort switch
+        //{
+        //    "name" => h => h.Name,
+        //    "description" => H => H.Description,
+        //    "type" => h => h.Type,
+        //    "status" => h => h.Status,
+        //    _ => h => h.Name
+        //};
 
         List<HabitDto> habits = await dbContext.Habits //query
             .Where(h => query.Search == null ||
@@ -36,6 +58,7 @@ public sealed class HabitsController(
                         h.Description != null && h.Description.ToLower().Contains(query.Search))
             .Where(h => query.Type == null || h.Type == query.Type)
             .Where(h => query.Status == null || h.Status == query.Status)
+            .ApplySort(query.Sort, sortMappings)
             .Select(HabitQueries.ProjectToDto())
             .ToListAsync();
 
