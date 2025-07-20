@@ -1,6 +1,6 @@
 ﻿using System.Linq.Dynamic.Core;
 
-namespace DevHabit.Api.Services;
+namespace DevHabit.Api.Services.Sorting;
 
 internal static class QueryableExtensions
 {

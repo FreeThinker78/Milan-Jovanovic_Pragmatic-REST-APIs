@@ -26,7 +26,7 @@ public sealed class TagsController(
 
         var tagsCollectionDto = new TagsCollectionDto
         {
-            Data = tags
+            Items = tags
         };
 
         return Ok(tagsCollectionDto);
