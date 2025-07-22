@@ -19,7 +19,8 @@ namespace DevHabit.Api.Controllers;
 [ApiController]
 [Route("habits")]
 public sealed class HabitsController(
-    ApplicationDbContext dbContext)
+    ApplicationDbContext dbContext,
+    LinkService linkService)
     : ControllerBase
 {
 
@@ -67,11 +68,19 @@ public sealed class HabitsController(
 
         var paginationResult = new PaginationResult<ExpandoObject>
         {
-            Items = dataShapingService.ShapeCollectionData(habits, query.Fields),
+            Items = dataShapingService.ShapeCollectionData(
+                habits, 
+                query.Fields, 
+                h => CreateLinksForHabit(h.Id,query.Fields)),
             Page = query.Page,
             PageSize = query.PageSize,
             TotalCount = totalCount
         };
+        paginationResult.Links = CreateLinksForHabits(
+            query,
+            paginationResult.HasNextPage,
+            paginationResult.HasPreviousPage);
+
 
         return Ok(paginationResult);
     }
@@ -102,6 +111,10 @@ public sealed class HabitsController(
 
         ExpandoObject shapedHabitDto = dataShapingService.ShapeData(habit, fields);
 
+        List<LinkDto> links = CreateLinksForHabit(id, fields);
+
+        shapedHabitDto.TryAdd("links", links);
+
         return Ok(shapedHabitDto);
     }
 
@@ -119,6 +132,7 @@ public sealed class HabitsController(
         await dbContext.SaveChangesAsync();
 
         HabitDto habitDto = habit.ToDto();
+        habitDto.Links = CreateLinksForHabit(habitDto.Id, null);
 
         return CreatedAtAction(nameof(GetHabit), new { id = habitDto.Id }, habitDto);
     }
@@ -184,5 +198,75 @@ public sealed class HabitsController(
         await dbContext.SaveChangesAsync();
 
         return NoContent();
+    }
+
+    private List<LinkDto> CreateLinksForHabit(string id, string? fields)
+    {
+        List<LinkDto> links =
+        [
+            linkService.Create(nameof(GetHabit), "self", HttpMethods.Get, new { id , fields}),
+            linkService.Create(nameof(UpdateHabit), "update", HttpMethods.Put, new { id }),
+            linkService.Create(nameof(PatchHabit), "partial-update", HttpMethods.Patch, new { id }),
+            linkService.Create(nameof(DeleteHabit), "delete", HttpMethods.Delete, new { id }),
+            linkService.Create(
+                nameof(HabitTagsController.UpsertHabitTags),
+                "upsert-tags",
+                HttpMethods.Put,
+                new { habitId = id },
+                HabitTagsController.Name),
+        ];
+
+        return links;
+    }
+
+    private List<LinkDto> CreateLinksForHabits(
+        HabitsQueryParameters query,
+        bool hasNextPage,
+        bool hasPreviousPage)
+    {
+        List<LinkDto> links = 
+        [
+            linkService.Create(nameof(GetHabits), "self", HttpMethods.Get, new
+                {
+                    page = query.Page,
+                    pageSize = query.PageSize,
+                    fields = query.Fields,
+                    q = query.Search,
+                    sort = query.Sort,
+                    type = query.Type,
+                    status = query.Status
+                }),
+            linkService.Create(nameof(CreateHabit), "create", HttpMethods.Post),
+        ];
+
+        if (hasNextPage)
+        {
+            links.Add(linkService.Create(nameof(GetHabits), "next-page", HttpMethods.Get, new
+            {
+                page = query.Page + 1,
+                pageSize = query.PageSize,
+                fields = query.Fields,
+                q = query.Search,
+                sort = query.Sort,
+                type = query.Type,
+                status = query.Status
+            }));
+        }
+
+        if (hasPreviousPage)
+        {
+            links.Add(linkService.Create(nameof(GetHabits), "previous-page", HttpMethods.Get, new
+            {
+                page = query.Page - 1,
+                pageSize = query.PageSize,
+                fields = query.Fields,
+                q = query.Search,
+                sort = query.Sort,
+                type = query.Type,
+                status = query.Status
+            }));
+        }
+
+        return links;
     }
 }
