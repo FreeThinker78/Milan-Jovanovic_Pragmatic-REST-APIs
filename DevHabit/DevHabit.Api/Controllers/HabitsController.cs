@@ -1,18 +1,20 @@
-﻿using System.Linq.Expressions;
+﻿using System.Dynamic;
+using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
+using System.Net.Mime;
 using DevHabit.Api.Database;
+using DevHabit.Api.DTOs.Common;
 using DevHabit.Api.DTOs.Habits;
 using DevHabit.Api.Entities;
+using DevHabit.Api.Services;
+using DevHabit.Api.Services.Sorting;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Dynamic.Core;
-using DevHabit.Api.Services;
-using DevHabit.Api.DTOs.Common;
-using DevHabit.Api.Services.Sorting;
-using System.Dynamic;
 
 namespace DevHabit.Api.Controllers;
 
@@ -25,6 +27,7 @@ public sealed class HabitsController(
 {
 
     [HttpGet]
+    [Produces(MediaTypeNames.Application.Json, CustomMediaTypeNames.Application.HateoasJson)]
     public async Task<IActionResult> GetHabits(
         [FromQuery] HabitsQueryParameters query,
         SortMappingProvider sortMappingProvider,
@@ -66,30 +69,38 @@ public sealed class HabitsController(
             .Take(query.PageSize)
             .ToListAsync();
 
+        bool includeLinks = query.Accept == CustomMediaTypeNames.Application.HateoasJson;
+
         var paginationResult = new PaginationResult<ExpandoObject>
         {
             Items = dataShapingService.ShapeCollectionData(
                 habits, 
                 query.Fields, 
-                h => CreateLinksForHabit(h.Id,query.Fields)),
+                includeLinks ? h => CreateLinksForHabit(h.Id,query.Fields) : null),
             Page = query.Page,
             PageSize = query.PageSize,
             TotalCount = totalCount
         };
-        paginationResult.Links = CreateLinksForHabits(
-            query,
-            paginationResult.HasNextPage,
-            paginationResult.HasPreviousPage);
 
+        if (includeLinks)
+        {
+            paginationResult.Links = CreateLinksForHabits(
+                query,
+                paginationResult.HasNextPage,
+                paginationResult.HasPreviousPage);
+        }
 
         return Ok(paginationResult);
     }
 
     [HttpGet("{id}")]
+    [Produces(MediaTypeNames.Application.Json, CustomMediaTypeNames.Application.HateoasJson)]
     public async Task<IActionResult> GetHabit(
         string id,
         string? fields,
-        DataShapingService dataShapingService)
+        DataShapingService dataShapingService,
+        [FromHeader(Name = "Accept")]
+        string? accept)
     {
         if (!dataShapingService.Validate<HabitWithTagsDto>(fields))
         {
@@ -111,9 +122,11 @@ public sealed class HabitsController(
 
         ExpandoObject shapedHabitDto = dataShapingService.ShapeData(habit, fields);
 
-        List<LinkDto> links = CreateLinksForHabit(id, fields);
-
-        shapedHabitDto.TryAdd("links", links);
+        if (accept == CustomMediaTypeNames.Application.HateoasJson)
+        {
+            List<LinkDto> links = CreateLinksForHabit(id, fields);
+            shapedHabitDto.TryAdd("links", links);
+        }
 
         return Ok(shapedHabitDto);
     }
@@ -121,7 +134,9 @@ public sealed class HabitsController(
     [HttpPost]
     public async Task<ActionResult<HabitDto>> CreateHabit(
         CreateHabitDto createHabitDto,
-        IValidator<CreateHabitDto> validator)
+        IValidator<CreateHabitDto> validator,
+        [FromHeader(Name = "Accept")]
+        string? accept)
     {
         await validator.ValidateAndThrowAsync(createHabitDto);
 
@@ -132,7 +147,11 @@ public sealed class HabitsController(
         await dbContext.SaveChangesAsync();
 
         HabitDto habitDto = habit.ToDto();
-        habitDto.Links = CreateLinksForHabit(habitDto.Id, null);
+
+        if (accept == CustomMediaTypeNames.Application.HateoasJson)
+        {
+            habitDto.Links = CreateLinksForHabit(habitDto.Id, null);
+        }
 
         return CreatedAtAction(nameof(GetHabit), new { id = habitDto.Id }, habitDto);
     }

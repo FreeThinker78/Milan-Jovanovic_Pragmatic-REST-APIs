@@ -1,6 +1,8 @@
-﻿using DevHabit.Api.Database;
+﻿using System.Net.Mime;
+using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.Tags;
 using DevHabit.Api.Entities;
+using DevHabit.Api.Services;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +19,7 @@ public sealed class TagsController(
     : ControllerBase
 {
     [HttpGet]
+    [Produces(MediaTypeNames.Application.Json)]
     public async Task<ActionResult<TagsCollectionDto>> GetTags()
     {
         List<TagDto> tags = await dbContext
@@ -33,6 +36,7 @@ public sealed class TagsController(
     }
 
     [HttpGet("{id}")]
+    [Produces(MediaTypeNames.Application.Json)]
     public async Task<ActionResult<TagDto>> GetTag(string id)
     {
         TagDto? tag = await dbContext
@@ -50,6 +54,7 @@ public sealed class TagsController(
     }
 
     [HttpPost]
+    [Produces(MediaTypeNames.Application.Json)]
     public async Task<ActionResult<TagDto>> CreateTag(
         CreateTagDto createTagDto,
         IValidator<CreateTagDto> validator,
