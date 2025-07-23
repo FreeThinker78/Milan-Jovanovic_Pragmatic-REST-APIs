@@ -4,7 +4,7 @@ using DevHabit.Api.Extensions;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder
-    .AddControllers()
+    .AddApiServices()
     .AddErrorHandling()
     .AddDatabase()
     .AddObservability()

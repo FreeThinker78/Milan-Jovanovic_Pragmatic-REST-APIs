@@ -2,6 +2,7 @@
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Net.Mime;
+using Asp.Versioning;
 using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.Common;
 using DevHabit.Api.DTOs.Habits;
@@ -19,7 +20,10 @@ using Microsoft.EntityFrameworkCore;
 namespace DevHabit.Api.Controllers;
 
 [ApiController]
-[Route("habits")]
+//[Route("habits")]
+[Route("v{version:apiVersion}/habits")]
+[ApiVersion(1.0)]
+[ApiVersion(2.0)]
 public sealed class HabitsController(
     ApplicationDbContext dbContext,
     LinkService linkService)
@@ -94,6 +98,7 @@ public sealed class HabitsController(
     }
 
     [HttpGet("{id}")]
+    [MapToApiVersion("1.0")]
     [Produces(MediaTypeNames.Application.Json, CustomMediaTypeNames.Application.HateoasJson)]
     public async Task<IActionResult> GetHabit(
         string id,
@@ -113,6 +118,46 @@ public sealed class HabitsController(
             .Habits
             .Where(h => h.Id == id)
             .Select(HabitQueries.ProjectToDtoWithTags())
+            .FirstOrDefaultAsync();
+
+        if (habit is null)
+        {
+            return NotFound();
+        }
+
+        ExpandoObject shapedHabitDto = dataShapingService.ShapeData(habit, fields);
+
+        if (accept == CustomMediaTypeNames.Application.HateoasJson)
+        {
+            List<LinkDto> links = CreateLinksForHabit(id, fields);
+            shapedHabitDto.TryAdd("links", links);
+        }
+
+        return Ok(shapedHabitDto);
+    }
+
+
+    [HttpGet("{id}")]
+    [MapToApiVersion("2.0")]
+    [Produces(MediaTypeNames.Application.Json, CustomMediaTypeNames.Application.HateoasJson)]
+    public async Task<IActionResult> GetHabitV2(
+        string id,
+        string? fields,
+        DataShapingService dataShapingService,
+        [FromHeader(Name = "Accept")]
+        string? accept)
+    {
+        if (!dataShapingService.Validate<HabitWithTagsDtoV2>(fields))
+        {
+            return Problem(
+                statusCode: StatusCodes.Status400BadRequest,
+                detail: $"The provided data shaping 'fields' parameter is invalid: '{fields}'");
+        }
+
+        HabitWithTagsDtoV2? habit = await dbContext
+            .Habits
+            .Where(h => h.Id == id)
+            .Select(HabitQueries.ProjectToDtoWithTagsV2())
             .FirstOrDefaultAsync();
 
         if (habit is null)
