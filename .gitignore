@@ -421,3 +421,7 @@ FodyWeavers.xsd
 
 # WinMerge Artifacts:
 *conflicted copy*
+*.cs
+/DevHabit/DevHabit.Api/Controllers/UsersController.cs
+/DevHabit/DevHabit.Api/Database/Configurations/UserConfiguration.cs
+/DevHabit/DevHabit.Api/Entities/User.cs

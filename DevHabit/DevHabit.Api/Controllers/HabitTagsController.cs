@@ -1,7 +1,6 @@
 ﻿using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.HabitTags;
 using DevHabit.Api.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +16,7 @@ public sealed class HabitTagsController(
     [HttpPut]
     public async Task<ActionResult> UpsertHabitTags(string habitId, UpsertHabitTagsDto upsertHabitTagsDto)
     {
-        var habit = await dbContext.Habits
+        Habit? habit = await dbContext.Habits
             .Include(h => h.HabitTags)
             .FirstOrDefaultAsync(h => h.Id == habitId);
 
@@ -70,6 +69,8 @@ public sealed class HabitTagsController(
         }
 
         dbContext.HabitTags.Remove(habitTag);
+
+        await dbContext.SaveChangesAsync();
 
         return NoContent();
     }

@@ -1,16 +1,9 @@
 ﻿using DevHabit.Api.DTOs.Common;
 using DevHabit.Api.Entities;
-using Newtonsoft.Json;
 
 namespace DevHabit.Api.DTOs.Habits;
 
-//public sealed record HabitWithTagsDto : HabitDto
-//{
-//    [JsonProperty(Order = int.MaxValue)]
-//    public required string[] Tags { get; init; }
-//}
-
-public record HabitDto : ILinksResponse
+public sealed record HabitDto : ILinksResponse
 {
     public required string Id { get; init; }
     public required string Name { get; init; }

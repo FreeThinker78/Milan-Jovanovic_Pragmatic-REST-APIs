@@ -15,13 +15,13 @@ internal static class QueryableExtensions
             return query.OrderBy(defaultOrderBy);
         }
 
-        var sortFields = sort.Split(',')
+        string[] sortFields = sort.Split(',')
             .Select(s => s.Trim())
             .Where(s => !string.IsNullOrWhiteSpace(s))
             .ToArray();
 
-        var orderByParts = new List<string>();
-        foreach (var field in sortFields)
+        List<string> orderByParts = new();
+        foreach (string field in sortFields)
         {
             (string sortField, bool isDescending) = ParseSortField(field);
 

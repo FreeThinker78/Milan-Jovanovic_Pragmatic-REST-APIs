@@ -1,6 +1,4 @@
-﻿using System.Linq.Dynamic.Core;
-
-namespace DevHabit.Api.Services.Sorting;
+﻿namespace DevHabit.Api.Services.Sorting;
 
 public sealed class SortMappingProvider(IEnumerable<ISortMappingDefinition> sortMappingDefinitions)
 {
@@ -26,7 +24,8 @@ public sealed class SortMappingProvider(IEnumerable<ISortMappingDefinition> sort
             return true;
         }
 
-        var sortFields = sort.Split(',')
+        var sortFields = sort
+            .Split(',')
             .Select(f => f.Trim().Split(' ')[0])
             .Where(f => !string.IsNullOrWhiteSpace(f))
             .ToList();

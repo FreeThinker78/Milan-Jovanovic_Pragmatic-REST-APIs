@@ -5,7 +5,7 @@ using DevHabit.Api.DTOs.Common;
 
 namespace DevHabit.Api.Services;
 
-public class DataShapingService
+public sealed class DataShapingService
 {
     private static readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertiesCache = new();
 
@@ -90,7 +90,7 @@ public class DataShapingService
         HashSet<string> fieldsSet = fields
            .Split(',', StringSplitOptions.RemoveEmptyEntries)
            .Select(f => f.Trim())
-           .ToHashSet(StringComparer.OrdinalIgnoreCase) ?? [];
+           .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         PropertyInfo[] propertyInfos = PropertiesCache.GetOrAdd(
          typeof(T),

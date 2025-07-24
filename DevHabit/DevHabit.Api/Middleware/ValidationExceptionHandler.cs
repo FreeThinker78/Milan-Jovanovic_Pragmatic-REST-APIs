@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DevHabit.Api.Middleware;
 
-public class ValidationExceptionHandler(
+public sealed class ValidationExceptionHandler(
     IProblemDetailsService problemDetailsService)
     : IExceptionHandler
 {
@@ -27,7 +27,7 @@ public class ValidationExceptionHandler(
             ProblemDetails = new ProblemDetails
             {
                 Detail = "One or more validation errors occurred",
-                Status = httpContext.Response.StatusCode
+                Status = StatusCodes.Status400BadRequest
             }
         };
 

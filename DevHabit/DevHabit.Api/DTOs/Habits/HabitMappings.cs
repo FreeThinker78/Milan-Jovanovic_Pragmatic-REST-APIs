@@ -55,11 +55,13 @@ internal static class HabitMappings
             Status = habit.Status,
             IsArchived = habit.IsArchived,
             EndDate = habit.EndDate,
-            Milestone = habit.Milestone != null ? new MilestoneDto
-            {
-                Target = habit.Milestone.Target,
-                Current = habit.Milestone.Current
-            } : null,
+            Milestone = habit.Milestone == null 
+                ? null
+                : new MilestoneDto
+                {
+                    Target = habit.Milestone.Target,
+                    Current = habit.Milestone.Current
+                },
             CreatedAtUtc = habit.CreatedAtUtc,
             UpdatedAtUtc = habit.UpdatedAtUtc,
             LastCompletedAtUtc = habit.LastCompletedAtUtc

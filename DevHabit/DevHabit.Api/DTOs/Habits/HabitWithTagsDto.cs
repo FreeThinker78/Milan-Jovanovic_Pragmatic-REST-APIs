@@ -2,7 +2,7 @@
 
 namespace DevHabit.Api.DTOs.Habits;
 
-public record HabitWithTagsDto
+public sealed record HabitWithTagsDto
 {
     public required string Id { get; init; }
     public required string Name { get; init; }
