@@ -87,7 +87,7 @@ public sealed class DataShapingService
             return true;
         }
 
-        HashSet<string> fieldsSet = fields
+        var fieldsSet = fields
            .Split(',', StringSplitOptions.RemoveEmptyEntries)
            .Select(f => f.Trim())
            .ToHashSet(StringComparer.OrdinalIgnoreCase);
