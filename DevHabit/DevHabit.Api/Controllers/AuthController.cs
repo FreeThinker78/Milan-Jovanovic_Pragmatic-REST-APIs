@@ -2,6 +2,7 @@
 using DevHabit.Api.DTOs.Auth;
 using DevHabit.Api.DTOs.Users;
 using DevHabit.Api.Entities;
+using DevHabit.Api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,12 @@ namespace DevHabit.Api.Controllers;
 public sealed class AuthController(
     UserManager<IdentityUser> userManager,
     ApplicationIdentityDbContext identityDbContext,
-    ApplicationDbContext applicationDbContext) 
+    ApplicationDbContext applicationDbContext,
+    TokenProvider tokenProvider) 
     : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterUserDto registerUserDto)
+    public async Task<ActionResult<AccessTokensDto>> Register(RegisterUserDto registerUserDto)
     {
         using IDbContextTransaction transaction = await identityDbContext.Database.BeginTransactionAsync();
         // This only works if the 2 contexts use the same database (connection string):
@@ -63,6 +65,25 @@ public sealed class AuthController(
 
         await transaction.CommitAsync(); // Both databases.
 
-        return Ok(user.Id);
+        AccessTokensDto accessTokens = tokenProvider.Create(new TokenRequest(identityUser.Id, identityUser.Email));
+
+        return Ok(accessTokens);
+    }
+
+    [HttpPost("login")]
+    public async Task<ActionResult<AccessTokensDto>> Login(LoginUserDto loginUserDto)
+    {
+        IdentityUser? identityUser = await userManager.FindByEmailAsync(loginUserDto.Email);
+
+        if (identityUser is null || !await userManager.CheckPasswordAsync(identityUser, loginUserDto.Password))
+        {
+            return Unauthorized();
+        }
+
+        var tokenRequest = new TokenRequest(identityUser.Id, identityUser.Email!);
+
+        AccessTokensDto accessTokens = tokenProvider.Create(tokenRequest);
+
+        return Ok(accessTokens);
     }
 }

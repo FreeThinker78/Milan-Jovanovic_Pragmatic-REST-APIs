@@ -1,5 +1,6 @@
 ﻿using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ namespace DevHabit.Api.Controllers;
 
 [ApiController]
 [Route("users")]
+[Authorize]
 public sealed class UsersController(ApplicationDbContext dbContext) : ControllerBase
 {
     [HttpGet("{id}")]
