@@ -18,7 +18,7 @@ namespace DevHabit.Api.Controllers;
 
 [ApiController]
 [Route("habits")]
-[Authorize]
+[Authorize(Roles = Roles.Member)]
 [ApiVersion(1.0)]
 [Produces(
     MediaTypeNames.Application.Json,
@@ -359,6 +359,11 @@ public sealed class HabitsController(
 
     private List<LinkDto> CreateLinksForHabit(string id, string? fields)
     {
+        //User.IsInRole(Roles.Member)
+        //{
+
+        //}
+
         List<LinkDto> links =
         [
             linkService.Create(nameof(GetHabit), "self", HttpMethods.Get, new { id , fields}),

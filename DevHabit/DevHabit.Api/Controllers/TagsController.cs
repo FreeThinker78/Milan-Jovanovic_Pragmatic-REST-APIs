@@ -15,7 +15,7 @@ namespace DevHabit.Api.Controllers;
 
 [ApiController]
 [Route("tags")]
-[Authorize]
+[Authorize(Roles = Roles.Member)]
 [Produces(
     MediaTypeNames.Application.Json,
     CustomMediaTypeNames.Application.JsonV1,
