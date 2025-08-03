@@ -54,7 +54,7 @@ public static class DatabaseExtensions
         }
         catch (Exception ex)
         {
-            app.Logger.LogError(ex, "An error occurred while seeding initiial data.");
+            app.Logger.LogError(ex, "An error occurred while seeding initial data.");
             throw;
         }
     }

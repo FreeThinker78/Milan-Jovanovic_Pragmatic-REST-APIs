@@ -1,27 +1,27 @@
-﻿using DevHabit.Api.Database;
+﻿using System.Net.Http.Headers;
+using System.Text;
+using Asp.Versioning;
+using DevHabit.Api.Database;
+using DevHabit.Api.DTOs.Habits;
+using DevHabit.Api.Entities;
 using DevHabit.Api.Middleware;
+using DevHabit.Api.Services;
+using DevHabit.Api.Services.Sorting;
+using DevHabit.Api.Settings;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using Npgsql;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using DevHabit.Api.Services.Sorting;
-using DevHabit.Api.Services;
-using DevHabit.Api.DTOs.Habits;
-using DevHabit.Api.Entities;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
-using Asp.Versioning;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using DevHabit.Api.Settings;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Net.Http.Headers;
 
 namespace DevHabit.Api;
 
@@ -65,7 +65,6 @@ public static class DependencyInjection
                     new MediaTypeApiVersionReaderBuilder()
                     .Template("application/vnd.dev-habit.hateoas.{version}+json")
                     .Build());
-
             })
             .AddMvc();
 

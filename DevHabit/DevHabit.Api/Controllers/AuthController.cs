@@ -148,6 +148,11 @@ public sealed class AuthController(
             return Unauthorized();
         }
 
+        if (refreshToken.ExpiresAtUtc < DateTime.UtcNow)
+        {
+            return Unauthorized();
+        }
+        
         IList<string> userRoles = await userManager.GetRolesAsync(refreshToken.User);
 
         var tokenRequest = new TokenRequest(refreshToken.User.Id, refreshToken.User.Email!, userRoles);
@@ -159,6 +164,5 @@ public sealed class AuthController(
         await identityDbContext.SaveChangesAsync();
 
         return Ok(accessTokens);
-
     }
 }

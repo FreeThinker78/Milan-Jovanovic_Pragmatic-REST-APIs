@@ -117,8 +117,7 @@ public sealed class TagsController(
         {
             return Problem(
                 detail: $"The tag '{tag.Name}' already exists.",
-                statusCode: StatusCodes.Status409Conflict
-                );
+                statusCode: StatusCodes.Status409Conflict);
         }
 
         dbContext.Tags.Add(tag);

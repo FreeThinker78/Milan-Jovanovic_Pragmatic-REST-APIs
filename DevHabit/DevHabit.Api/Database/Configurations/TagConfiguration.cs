@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DevHabit.Api.Database.Configurations;
 
-public sealed class TagConfiguration : IEntityTypeConfiguration<Tag>
+internal sealed class TagConfiguration : IEntityTypeConfiguration<Tag>
 {
     public void Configure(EntityTypeBuilder<Tag> builder)
     {
@@ -21,6 +21,6 @@ public sealed class TagConfiguration : IEntityTypeConfiguration<Tag>
 
         builder.HasOne<User>()
             .WithMany()
-            .HasForeignKey(h => h.UserId);
+            .HasForeignKey(t => t.UserId);
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DevHabit.Api.Database.Configurations;
 
-public sealed class GitHubAccessTokenConfiguration : IEntityTypeConfiguration<GitHubAccessToken>
+internal sealed class GitHubAccessTokenConfiguration : IEntityTypeConfiguration<GitHubAccessToken>
 {
     public void Configure(EntityTypeBuilder<GitHubAccessToken> builder)
     {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DevHabit.Api.Database.Configurations;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
@@ -17,7 +17,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.Name).HasMaxLength(100);
 
-        builder.HasIndex(user => user.Email).IsUnique();
-        builder.HasIndex(user => user.IdentityId).IsUnique();
+        builder.HasIndex(u => u.Email).IsUnique();
+        builder.HasIndex(u => u.IdentityId).IsUnique();
     }
 }

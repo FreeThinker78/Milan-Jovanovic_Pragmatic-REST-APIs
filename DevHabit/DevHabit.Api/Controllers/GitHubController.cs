@@ -11,15 +11,20 @@ namespace DevHabit.Api.Controllers;
 [Authorize(Roles = Roles.Member)]
 [ApiController]
 [Route("github")]
+[Produces(
+    MediaTypeNames.Application.Json,
+    CustomMediaTypeNames.Application.JsonV1,
+    CustomMediaTypeNames.Application.HateoasJson,
+    CustomMediaTypeNames.Application.HateoasJsonV1)]
 public sealed class GitHubController(
     GitHubAccessTokenService gitHubAccessTokenService,
     GitHubService gitHubService,
     UserContext userContext,
-    LinkService linksService)
+    LinkService linkService)
     : ControllerBase
 {
     [HttpPut("personal-access-token")]
-    public async Task<IActionResult> StoreAccessToken(StoreGitHubAccessTokenDto storeGitHubAcccessTokenDto)
+    public async Task<IActionResult> StoreAccessToken(StoreGitHubAccessTokenDto storeGitHubAccessTokenDto)
     {
         string? userId = await userContext.GetUserIdAsync();
 
@@ -28,7 +33,7 @@ public sealed class GitHubController(
             return Unauthorized();
         }
 
-        await gitHubAccessTokenService.StoreAsync(userId, storeGitHubAcccessTokenDto);
+        await gitHubAccessTokenService.StoreAsync(userId, storeGitHubAccessTokenDto);
 
         return NoContent();
     }
@@ -48,14 +53,6 @@ public sealed class GitHubController(
     }
 
     [HttpGet("profile")]
-    [Produces(
-        MediaTypeNames.Application.Json,
-        CustomMediaTypeNames.Application.JsonV1,
-        CustomMediaTypeNames.Application.JsonV2,
-        CustomMediaTypeNames.Application.HateoasJson,
-        CustomMediaTypeNames.Application.HateoasJsonV1,
-        CustomMediaTypeNames.Application.HateoasJsonV2)]
-
     public async Task<ActionResult<GitHubUserProfileDto>> GetUserProfile([FromHeader] AcceptHeaderDto acceptHeader)
     {
         string? userId = await userContext.GetUserIdAsync();
@@ -80,9 +77,9 @@ public sealed class GitHubController(
         {
             userProfile.Links =
             [
-                linksService.Create(nameof(GetUserProfile), "self", HttpMethods.Get),
-                linksService.Create(nameof(StoreAccessToken), "store-token", HttpMethods.Put),
-                linksService.Create(nameof(RevokeAccessToken), "revoke-token", HttpMethods.Delete)
+                linkService.Create(nameof(GetUserProfile), "self", HttpMethods.Get),
+                linkService.Create(nameof(StoreAccessToken), "store-token", HttpMethods.Put),
+                linkService.Create(nameof(RevokeAccessToken), "revoke-token", HttpMethods.Delete)
             ];
         }
 

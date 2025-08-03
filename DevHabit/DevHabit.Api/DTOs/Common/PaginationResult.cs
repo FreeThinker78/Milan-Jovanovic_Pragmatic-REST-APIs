@@ -1,5 +1,4 @@
-﻿using DevHabit.Api.DTOs.Habits;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DevHabit.Api.DTOs.Common;
 

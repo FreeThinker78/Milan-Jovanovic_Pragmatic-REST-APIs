@@ -1,8 +1,8 @@
-﻿using System.Security.Claims;
+﻿using System.Net.Mime;
+using System.Security.Claims;
 using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.Users;
 using DevHabit.Api.Entities;
-using DevHabit.Api.Extensions;
 using DevHabit.Api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +13,11 @@ namespace DevHabit.Api.Controllers;
 [Authorize(Roles = $"{Roles.Admin},{Roles.Member}")]
 [ApiController]
 [Route("users")]
+[Produces(
+    MediaTypeNames.Application.Json,
+    CustomMediaTypeNames.Application.JsonV1,
+    CustomMediaTypeNames.Application.HateoasJson,
+    CustomMediaTypeNames.Application.HateoasJsonV1)]
 public sealed class UsersController(
     ApplicationDbContext dbContext,
     UserContext userContext)
