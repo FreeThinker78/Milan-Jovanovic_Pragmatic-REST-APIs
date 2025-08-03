@@ -1,0 +1,2 @@
+.\client\devhabit-ui> npm install
+.\client\devhabit-ui> npm run dev
