@@ -1,0 +1,2776 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "DevHabit.Api | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:5001/"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokensDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries": {
+      "get": {
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Fields",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "HabitId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FromDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "ToDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "Source",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IsArchived",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "IncludeLinks",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "acceptHeader",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AcceptHeaderDto"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries/{id}": {
+      "get": {
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Fields",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IncludeLinks",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEntryDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEntryDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEntryDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEntryDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEntryDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEntryDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEntryDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries/batch": {
+      "post": {
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "acceptHeader",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AcceptHeaderDto"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryBatchDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryBatchDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryBatchDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryBatchDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryBatchDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryBatchDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEntryBatchDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntryDto"
+                  }
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntryDto"
+                  }
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntryDto"
+                  }
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntryDto"
+                  }
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntryDto"
+                  }
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries/{id}/archive": {
+      "put": {
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries/{id}/un-archive": {
+      "put": {
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries/stats": {
+      "get": {
+        "tags": [
+          "Entries"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryStatsDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryStatsDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryStatsDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryStatsDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryStatsDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryStatsDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/github/personal-access-token": {
+      "put": {
+        "tags": [
+          "GitHub"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreGitHubAccessTokenDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreGitHubAccessTokenDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreGitHubAccessTokenDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreGitHubAccessTokenDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreGitHubAccessTokenDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreGitHubAccessTokenDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreGitHubAccessTokenDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "GitHub"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      }
+    },
+    "/github/profile": {
+      "get": {
+        "tags": [
+          "GitHub"
+        ],
+        "parameters": [
+          {
+            "name": "acceptHeader",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AcceptHeaderDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubUserProfileDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubUserProfileDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubUserProfileDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubUserProfileDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubUserProfileDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubUserProfileDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/habits": {
+      "get": {
+        "tags": [
+          "Habits"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Fields",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "IncludeLinks",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/json;v=2": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Habits"
+        ],
+        "parameters": [
+          {
+            "name": "acceptHeader",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AcceptHeaderDto"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHabitDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHabitDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHabitDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHabitDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHabitDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHabitDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHabitDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HabitDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/HabitDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/HabitDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HabitDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HabitDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HabitDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/habits/{id}": {
+      "get": {
+        "tags": [
+          "Habits"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Fields",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IncludeLinks",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/json;v=2": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Habits"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHabitDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHabitDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHabitDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHabitDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHabitDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHabitDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHabitDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/json;v=2": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Habits"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/json;v=2": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Habits"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/json;v=2": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+
+              }
+            }
+          }
+        }
+      }
+    },
+    "/habits/{habitId}/tags": {
+      "put": {
+        "tags": [
+          "HabitTags"
+        ],
+        "parameters": [
+          {
+            "name": "habitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertHabitTagsDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertHabitTagsDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertHabitTagsDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertHabitTagsDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertHabitTagsDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertHabitTagsDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertHabitTagsDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/habits/{habitId}/tags/{tagId}": {
+      "delete": {
+        "tags": [
+          "HabitTags"
+        ],
+        "parameters": [
+          {
+            "name": "habitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tags": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "acceptHeader",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AcceptHeaderDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagsCollectionDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagsCollectionDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagsCollectionDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagsCollectionDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagsCollectionDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagsCollectionDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "acceptHeader",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AcceptHeaderDto"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/{id}": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "acceptHeader",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AcceptHeaderDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagDto"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagDto"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTagDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "acceptHeaderDto",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AcceptHeaderDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json;v=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/json;v=2": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/vnd.dev-habit.hateoas.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/me/profile": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserProfileDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserProfileDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserProfileDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserProfileDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+
+              },
+              "application/json;v=1": {
+
+              },
+              "application/vnd.dev-habit.hateoas+json": {
+
+              },
+              "application/vnd.dev-habit.hateoas.1+json": {
+
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AcceptHeaderDto": {
+        "type": "object",
+        "properties": {
+          "accept": {
+            "type": "string",
+            "nullable": true
+          },
+          "includeLinks": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AccessTokensDto": {
+        "required": [
+          "accessToken",
+          "refreshToken"
+        ],
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateEntryBatchDto": {
+        "required": [
+          "entries"
+        ],
+        "type": "object",
+        "properties": {
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateEntryDto"
+            }
+          }
+        }
+      },
+      "CreateEntryDto": {
+        "required": [
+          "habitId",
+          "value",
+          "date"
+        ],
+        "type": "object",
+        "properties": {
+          "habitId": {
+            "type": "string"
+          },
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "CreateHabitDto": {
+        "required": [
+          "name",
+          "type",
+          "frequency",
+          "target"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/HabitType"
+          },
+          "frequency": {
+            "$ref": "#/components/schemas/FrequencyDto"
+          },
+          "target": {
+            "$ref": "#/components/schemas/TargetDto"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "milestone": {
+            "$ref": "#/components/schemas/MilestoneDto"
+          },
+          "automationSource": {
+            "$ref": "#/components/schemas/NullableOfAutomationSource"
+          }
+        }
+      },
+      "CreateTagDto": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "DailyStatsDto": {
+        "required": [
+          "date",
+          "count"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "EntryDto": {
+        "required": [
+          "id",
+          "habit",
+          "value",
+          "source",
+          "isArchived",
+          "date",
+          "createdAtUtc"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "habit": {
+            "$ref": "#/components/schemas/EntryHabitDto"
+          },
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "$ref": "#/components/schemas/EntrySource"
+          },
+          "externalId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isArchived": {
+            "type": "boolean"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "createdAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LinkDto"
+            }
+          }
+        }
+      },
+      "EntryHabitDto": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "EntrySource": {
+        "type": "integer"
+      },
+      "EntryStatsDto": {
+        "required": [
+          "dailyStats",
+          "totalEntries",
+          "currentStreak",
+          "longestStreak"
+        ],
+        "type": "object",
+        "properties": {
+          "dailyStats": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DailyStatsDto"
+            }
+          },
+          "totalEntries": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentStreak": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "longestStreak": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "FrequencyDto": {
+        "required": [
+          "type",
+          "timesPerPeriod"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/FrequencyType"
+          },
+          "timesPerPeriod": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "FrequencyType": {
+        "type": "integer"
+      },
+      "GitHubUserProfileDto": {
+        "required": [
+          "login",
+          "name",
+          "avatarUrl",
+          "bio",
+          "publicRepos",
+          "followers",
+          "following"
+        ],
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string"
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicRepos": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "followers": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "following": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LinkDto"
+            }
+          }
+        }
+      },
+      "HabitDto": {
+        "required": [
+          "id",
+          "userId",
+          "name",
+          "type",
+          "frequency",
+          "target",
+          "status",
+          "isArchived",
+          "createdAtUtc"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/HabitType"
+          },
+          "frequency": {
+            "$ref": "#/components/schemas/FrequencyDto"
+          },
+          "target": {
+            "$ref": "#/components/schemas/TargetDto"
+          },
+          "status": {
+            "$ref": "#/components/schemas/HabitStatus"
+          },
+          "isArchived": {
+            "type": "boolean"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "milestone": {
+            "$ref": "#/components/schemas/MilestoneDto"
+          },
+          "automationSource": {
+            "$ref": "#/components/schemas/NullableOfAutomationSource"
+          },
+          "createdAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastCompletedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LinkDto"
+            }
+          }
+        }
+      },
+      "HabitStatus": {
+        "type": "integer"
+      },
+      "HabitType": {
+        "type": "integer"
+      },
+      "LinkDto": {
+        "required": [
+          "href",
+          "rel",
+          "method"
+        ],
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          },
+          "rel": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginUserDto": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "MilestoneDto": {
+        "required": [
+          "target",
+          "current"
+        ],
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "current": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nullable": true
+      },
+      "NullableOfAutomationSource": {
+        "type": "integer",
+        "nullable": true
+      },
+      "Operation": {
+        "type": "object",
+        "properties": {
+          "value": {
+
+          },
+          "operationType": {
+            "$ref": "#/components/schemas/OperationType"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "OperationType": {
+        "type": "integer"
+      },
+      "RefreshTokenDto": {
+        "required": [
+          "refreshToken"
+        ],
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string"
+          }
+        }
+      },
+      "RegisterUserDto": {
+        "required": [
+          "email",
+          "name",
+          "password",
+          "confirmPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "confirmPassword": {
+            "type": "string"
+          }
+        }
+      },
+      "StoreGitHubAccessTokenDto": {
+        "required": [
+          "accessToken",
+          "expiresInDays"
+        ],
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "expiresInDays": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "TagDto": {
+        "required": [
+          "id",
+          "name",
+          "createdAtUtc"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LinkDto"
+            }
+          }
+        }
+      },
+      "TagsCollectionDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TagDto"
+            }
+          },
+          "links": {
+            "type": "array",
+            "items": {
+
+            }
+          }
+        }
+      },
+      "TargetDto": {
+        "required": [
+          "value",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateEntryDto": {
+        "required": [
+          "value",
+          "date"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "UpdateHabitDto": {
+        "required": [
+          "name",
+          "type",
+          "frequency",
+          "target"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/HabitType"
+          },
+          "frequency": {
+            "$ref": "#/components/schemas/FrequencyDto"
+          },
+          "target": {
+            "$ref": "#/components/schemas/TargetDto"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "milestone": {
+            "$ref": "#/components/schemas/UpdateMilestoneDto"
+          },
+          "automationSource": {
+            "$ref": "#/components/schemas/NullableOfAutomationSource"
+          }
+        }
+      },
+      "UpdateMilestoneDto": {
+        "required": [
+          "target"
+        ],
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "nullable": true
+      },
+      "UpdateTagDto": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "UpdateUserProfileDto": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "UpsertHabitTagsDto": {
+        "required": [
+          "tagIds"
+        ],
+        "type": "object",
+        "properties": {
+          "tagIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "UserDto": {
+        "required": [
+          "id",
+          "email",
+          "name",
+          "createdAtUtc"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LinkDto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Entries"
+    },
+    {
+      "name": "GitHub"
+    },
+    {
+      "name": "Habits"
+    },
+    {
+      "name": "HabitTags"
+    },
+    {
+      "name": "Tags"
+    },
+    {
+      "name": "Users"
+    }
+  ]
+}

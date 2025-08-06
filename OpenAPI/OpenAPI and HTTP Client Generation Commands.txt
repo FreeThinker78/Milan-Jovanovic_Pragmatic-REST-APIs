@@ -1,0 +1,28 @@
+Options to generate the API Client based on the OpenAPI specification v1.json generated documents:
+github.com/OpenAPITools/openapi-generator
+github.com/RicoSuter/NSwag
+github.com/Microsoft/Kiota
+
+Open the v1.json file in VsCode, then open a terminal:
+
+> dotnet tool install --global Microsoft.OpenApi.Kiota
+
+> kiota --veraion
+
+> kiota --help
+
+
+Create clients automatically:
+
+kiota generate -l CSharp -d <OPEN_API_SPEC_PATH> -c DevHabitClient -o ./CsharpClient
+kiota generate -l typescript -d <OPEN_API_SPEC_PATH> -c DevHabitClient -o ./TypeScriptClients
+
+
+Examples:
+
+kiota generate -l CSharp -d .\v1.json -c DevHabitClient -o ./CSharpClient 
+kiota generate -l typescript -d .\v1.json -c DevHabitClient -o ./TypeScriptClient 
+
+Note:
+
+There is a bug in the Microsoft OpenApi implementation that fails to add the correct links object sometimes.  Just copy a good one from another endpoint.  (See v1.json vs v1.json_BUG)
