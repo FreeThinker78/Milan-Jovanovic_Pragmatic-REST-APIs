@@ -17,8 +17,12 @@ export const HabitsPage: React.FC = () => {
   }, []);
 
   const loadHabits = async () => {
-    const result = await listHabits({ pageSize: 6 });
-    if (result) {
+  // Use the fields parameter to limit the data fetched. 
+  // Id is not required if you use the HATEOAS links to navigate.
+  // const result = await listHabits({ pageSize: 6 });
+  // const result = await listHabits({ pageSize: 6, fields: 'id,name,description,target,frequency,endDate,milestone' });
+  const result = await listHabits({ pageSize: 6, fields: 'name,description,target,frequency,endDate,milestone' });
+        if (result) {
       setHabits(result.items);
       setCreateLink(result.links.find(l => l.rel === 'create') || null);
       setNextPageLink(result.links.find(l => l.rel === 'next-page') || null);
@@ -81,8 +85,11 @@ export const HabitsPage: React.FC = () => {
           <div className="grid gap-4">
             {habits.map(habit => (
               <Link
-                key={habit.id}
-                to={`/habits/${habit.id}`}
+                // Id is not required in the habit response if you use the HATEOAS links to navigate.
+                // key={habit.id}
+                // to={`/habits/${habit.id}`}
+                key={habit.links.find(l => l.rel === 'self')?.href}
+                to={new URL(habit.links.find(l => l.rel === 'self')?.href ?? '#').pathname}
                 className="block bg-white rounded-lg shadow hover:shadow-md transition-shadow p-4"
               >
                 <div className="flex justify-between items-start">

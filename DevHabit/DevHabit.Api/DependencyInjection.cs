@@ -175,6 +175,9 @@ public static class DependencyInjection
         builder.Services.Configure<GitHubAutomationOptions>(
             builder.Configuration.GetSection(GitHubAutomationOptions.SectionName));
 
+        builder.Services.Configure<TagsOptions>(
+            builder.Configuration.GetSection(TagsOptions.SectionName));
+
         return builder;
     }
 

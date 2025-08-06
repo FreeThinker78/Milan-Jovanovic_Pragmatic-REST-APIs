@@ -175,6 +175,11 @@ public sealed class EntriesController(
         return CreatedAtAction(nameof(GetEntry), new { id = entryDto.Id }, entryDto);
     }
 
+    // 5.04 Optional ways to handle batch processing:
+    // POST /enries/batch
+    //      (This flow.)
+    // POST /entries-collection -> 201 Created (Location: /entries-collection?entryIds=[])
+    //      Most dogmatic, EntriessCollecitonController needed.
     [HttpPost("batch")]
     public async Task<ActionResult<List<EntryDto>>> CreateEntryBatch(
         CreateEntryBatchDto createEntryBatchDto,
