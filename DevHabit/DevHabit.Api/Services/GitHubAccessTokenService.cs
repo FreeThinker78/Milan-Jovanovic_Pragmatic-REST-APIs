@@ -29,7 +29,7 @@ public sealed class GitHubAccessTokenService(
             {
                 Id = $"gh_{Guid.CreateVersion7()}",
                 UserId = userId,
-                Token = accessTokenDto.AccessToken,
+                Token = encryptedToken,
                 CreatedAtUtc = DateTime.UtcNow,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(accessTokenDto.ExpiresInDays)
             });
@@ -68,6 +68,6 @@ public sealed class GitHubAccessTokenService(
 
     private async Task<GitHubAccessToken?> GetAccessTokenAsync(string userId, CancellationToken cancellationToken)
     {
-        return await dbContext.GitHubAccessTokens.SingleOrDefaultAsync(propa => propa.UserId == userId, cancellationToken);
+        return await dbContext.GitHubAccessTokens.SingleOrDefaultAsync(p => p.UserId == userId, cancellationToken);
     }
 }

@@ -10,6 +10,7 @@ internal static class HabitQueries
         return h => new HabitDto
         {
             Id = h.Id,
+            UserId = h.UserId,
             Name = h.Name,
             Description = h.Description,
             Type = h.Type,
@@ -70,7 +71,6 @@ internal static class HabitQueries
             CreatedAtUtc = h.CreatedAtUtc,
             UpdatedAtUtc = h.UpdatedAtUtc,
             LastCompletedAtUtc = h.LastCompletedAtUtc,
-
             Tags = h.Tags.Select(t => t.Name).ToArray()
         };
     }
@@ -106,7 +106,6 @@ internal static class HabitQueries
             CreatedAt = h.CreatedAtUtc,
             UpdatedAt = h.UpdatedAtUtc,
             LastCompletedAt = h.LastCompletedAtUtc,
-
             Tags = h.Tags.Select(t => t.Name).ToArray()
         };
     }

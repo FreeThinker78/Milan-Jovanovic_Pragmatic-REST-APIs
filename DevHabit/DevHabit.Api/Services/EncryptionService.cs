@@ -22,7 +22,7 @@ public sealed class EncryptionService(IOptions<EncryptionOptions> options)
             using var memoryStream = new MemoryStream();
             memoryStream.Write(aes.IV, 0, IvSize);
 
-            using (var encryptor = aes.CreateEncryptor())
+            using (ICryptoTransform encryptor = aes.CreateEncryptor())
             using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
             using (var streamWriter = new StreamWriter(cryptoStream))
             {
@@ -31,7 +31,7 @@ public sealed class EncryptionService(IOptions<EncryptionOptions> options)
 
             return Convert.ToBase64String(memoryStream.ToArray());
         }
-        catch (Exception ex)
+        catch (CryptographicException ex)
         {
             throw new InvalidOperationException("Encryption failed.", ex);
         }
@@ -68,9 +68,13 @@ public sealed class EncryptionService(IOptions<EncryptionOptions> options)
 
             return streamReader.ReadToEnd();
         }
-        catch (Exception ex)
+        catch (CryptographicException ex)
         {
             throw new InvalidOperationException("Decryption failed.", ex);
+        }
+        catch (FormatException ex)
+        {
+            throw new InvalidOperationException("Invalid cipher text format", ex);
         }
     }
 }

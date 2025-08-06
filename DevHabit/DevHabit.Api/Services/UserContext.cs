@@ -10,7 +10,7 @@ public sealed class UserContext(
     ApplicationDbContext dbContext,
     IMemoryCache memoryCache)
 {
-    private const string CacheKeyPrefix = "user:id:";
+    private const string CacheKeyPrefix = "users:id:";
     private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(30);
 
     public async Task<string?> GetUserIdAsync(CancellationToken cancellationToken = default)

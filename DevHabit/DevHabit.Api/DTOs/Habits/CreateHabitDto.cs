@@ -11,4 +11,5 @@ public sealed record CreateHabitDto
     public required TargetDto Target { get; init; }
     public DateOnly? EndDate { get; init; }
     public MilestoneDto? Milestone { get; init; }
+    public AutomationSource? AutomationSource { get; init; }
 }

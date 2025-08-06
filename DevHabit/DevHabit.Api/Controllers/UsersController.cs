@@ -1,5 +1,4 @@
 ﻿using System.Net.Mime;
-using System.Security.Claims;
 using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.Common;
 using DevHabit.Api.DTOs.Users;

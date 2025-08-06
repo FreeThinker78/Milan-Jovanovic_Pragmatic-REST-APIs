@@ -27,11 +27,8 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+    <PackageReference Include="Quartz.Extensions.Hosting" />
     <PackageReference Include="System.Linq.Dynamic.Core" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\Identity\" />
   </ItemGroup>
 
 </Project>
