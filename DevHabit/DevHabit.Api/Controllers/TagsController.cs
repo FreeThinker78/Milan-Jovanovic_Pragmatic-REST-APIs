@@ -18,7 +18,7 @@ namespace DevHabit.Api.Controllers;
 [ApiController]
 [Route("tags")]
 [Authorize(Roles = Roles.Member)]
-[ResponseCache(Duration= 120)]
+[ResponseCache(Duration = 120)]
 [Produces(
     MediaTypeNames.Application.Json,
     CustomMediaTypeNames.Application.JsonV1,
@@ -114,7 +114,7 @@ public sealed class TagsController(
         if (!validationResult.IsValid)
         {
             ProblemDetails problem = problemDetailsFactory.CreateProblemDetails(
-                HttpContext, 
+                HttpContext,
                 StatusCodes.Status400BadRequest);
             problem.Extensions.Add("errors", validationResult.ToDictionary());
 
@@ -145,7 +145,10 @@ public sealed class TagsController(
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateTag(string id, UpdateTagDto updateTagDto)
+    public async Task<ActionResult> UpdateTag(
+        string id,
+        UpdateTagDto updateTagDto,
+        InMemoryETagStore etagStore)
     {
         string? userId = await userContext.GetUserIdAsync();
         if (string.IsNullOrWhiteSpace(userId))
@@ -170,6 +173,11 @@ public sealed class TagsController(
         tag.UpdateFromDto(updateTagDto);
 
         await dbContext.SaveChangesAsync();
+
+        etagStore.SetETag(Request.Path.Value!, tag.ToDto());
+
+        // Not included with 204, normally.
+        //Response.Headers.ETag = etagStore.GetETag(Request.Path.Value!);
 
         return NoContent();
     }
@@ -207,7 +215,7 @@ public sealed class TagsController(
             linkService.Create(nameof(GetTags), "self", HttpMethods.Get)
         ];
 
-        if (!_tagOptions.UserTagsLimit.HasValue || 
+        if (!_tagOptions.UserTagsLimit.HasValue ||
             tagsCount < _tagOptions.UserTagsLimit)
         {
             links.Add(linkService.Create(nameof(CreateTag), "create", HttpMethods.Post));
