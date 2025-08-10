@@ -18,6 +18,7 @@ namespace DevHabit.Api.Controllers;
 [ApiController]
 [Route("tags")]
 [Authorize(Roles = Roles.Member)]
+[ResponseCache(Duration= 120)]
 [Produces(
     MediaTypeNames.Application.Json,
     CustomMediaTypeNames.Application.JsonV1,
@@ -161,7 +162,7 @@ public sealed class TagsController(
             return NotFound();
         }
 
-        if (await dbContext.Tags.AnyAsync(t => t.Name == tag.Name && t.UserId == userId))
+        if (await dbContext.Tags.AnyAsync(t => t.Name == updateTagDto.Name && t.Id != id && t.UserId == userId))
         {
             return Conflict($"The tag '{tag.Name}' already exists.");
         }

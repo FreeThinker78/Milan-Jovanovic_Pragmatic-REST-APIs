@@ -71,6 +71,8 @@ public static class DependencyInjection
 
         builder.Services.AddOpenApi();
 
+        builder.Services.AddResponseCaching();
+
         return builder;
     }
 
@@ -178,6 +180,8 @@ public static class DependencyInjection
         builder.Services.Configure<TagsOptions>(
             builder.Configuration.GetSection(TagsOptions.SectionName));
 
+        builder.Services.AddSingleton<InMemoryETagStore>();
+
         return builder;
     }
 
@@ -187,9 +191,11 @@ public static class DependencyInjection
             .AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationIdentityDbContext>();
 
-        builder.Services.Configure<JwtAuthOptions>(builder.Configuration.GetSection("Jwt"));
+        builder.Services.Configure<JwtAuthOptions>(builder.Configuration.GetSection(JwtAuthOptions.SectionName));
 
-        JwtAuthOptions jwtAuthOptions = builder.Configuration.GetSection("Jwt").Get<JwtAuthOptions>()!;
+        JwtAuthOptions jwtAuthOptions = builder.Configuration
+            .GetSection(JwtAuthOptions.SectionName)
+            .Get<JwtAuthOptions>()!;
 
         builder.Services
             .AddAuthentication(options =>
