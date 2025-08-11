@@ -96,4 +96,3 @@ public sealed class ETagMiddleware(RequestDelegate next)
                context.Request.Method == HttpMethods.Delete;
     }
 }
-z
